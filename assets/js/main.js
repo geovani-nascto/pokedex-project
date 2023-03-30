@@ -6,7 +6,7 @@ const pokemonList = document.getElementById('pokemonList');
 const loadMoreButton = document.getElementById('loadMoreButton');
 const limit = 10;
 let offset = 0;
-const maxRecords = 151
+const maxRecords = 151;
 
 function convertPokemonToHtml(pokemon){
     return `
@@ -43,16 +43,19 @@ loadPokemonItems(offset, limit);
 loadMoreButton.addEventListener('click', () => {
     offset += limit;
 
-    const qtdRecordsWithNextPage = offset + limit;
+    //Para limitar os 151 da 1º Geração:
+    // const qtdRecordsWithNextPage = offset + limit;
+    // if(qtdRecordsWithNextPage >= maxRecords){
+    //     const newLimit = maxRecords - offset
+    //     loadPokemonItems(offset, newLimit);
 
-    if(qtdRecordsWithNextPage >= maxRecords){
-        const newLimit = maxRecords - offset
-        loadPokemonItems(offset, limit);
+    //     loadMoreButton.parentElement.removeChild(loadMoreButton);
+    // } else {
+    //     loadPokemonItems(offset, limit);
+    // }
 
-        loadMoreButton.parentElement.removeChild(loadMoreButton);
-    } else {
-        loadPokemonItems(offset, limit);
-    }
+    //Sem limite de geração
+    loadPokemonItems(offset, limit);
 })
 
 
